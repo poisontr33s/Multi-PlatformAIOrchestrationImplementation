@@ -15,16 +15,83 @@ __version__ = "1.0.0"
 __author__ = "AI Orchestration Team"
 __email__ = "team@ai-orchestration.com"
 
-from .core.orchestrator import Orchestrator
-from .core.engine import StrategicEngine
-from .subscription.manager import SubscriptionManager
-from .agents.coordinator import AgentCoordinator
-from .intelligence.emergent import EmergentIntelligence
+from .core.orchestrator import (
+    Orchestrator,
+    OrchestrationTask,
+    OrchestrationConfig,
+    TaskClassification,
+    PriorityLevel,
+    ComplexityRating
+)
+from .core.engine import (
+    StrategicEngine,
+    StrategicDecision,
+    StrategicDecisionType,
+    StrategicContext
+)
+from .subscription.manager import (
+    SubscriptionManager,
+    SubscriptionTier,
+    SubscriptionFeature,
+    SubscriptionPlan,
+    UserSubscription,
+    SubscriptionMatrix
+)
+from .agents.coordinator import (
+    AgentCoordinator,
+    Agent,
+    AgentType,
+    AgentStatus,
+    AgentCapability,
+    AgentMetrics,
+    CoordinationStrategy
+)
+from .intelligence.emergent import (
+    EmergentIntelligence,
+    LearningPattern,
+    IntelligenceMetrics,
+    EmergentConfig,
+    LearningMode,
+    PatternType
+)
 
 __all__ = [
+    # Core orchestration
     "Orchestrator",
-    "StrategicEngine", 
+    "OrchestrationTask",
+    "OrchestrationConfig",
+    "TaskClassification",
+    "PriorityLevel",
+    "ComplexityRating",
+    
+    # Strategic engine
+    "StrategicEngine",
+    "StrategicDecision",
+    "StrategicDecisionType",
+    "StrategicContext",
+    
+    # Subscription management
     "SubscriptionManager",
+    "SubscriptionTier",
+    "SubscriptionFeature",
+    "SubscriptionPlan",
+    "UserSubscription",
+    "SubscriptionMatrix",
+    
+    # Agent coordination
     "AgentCoordinator",
+    "Agent",
+    "AgentType", 
+    "AgentStatus",
+    "AgentCapability",
+    "AgentMetrics",
+    "CoordinationStrategy",
+    
+    # Emergent intelligence
     "EmergentIntelligence",
+    "LearningPattern",
+    "IntelligenceMetrics",
+    "EmergentConfig",
+    "LearningMode",
+    "PatternType"
 ]
