@@ -163,6 +163,16 @@ pids/
 
 # Dependency directories
 node_modules/
+.pnp/
+.pnp.js
+
+# Bun
+.bun/
+bun.lockb
+
+# uv
+.venv/
+uv.lock
 
 # Optional npm cache directory
 .npm
