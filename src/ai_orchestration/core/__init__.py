@@ -4,30 +4,30 @@ Core Orchestration Module
 Imports and exports core orchestration components.
 """
 
-from .orchestrator import (
-    Orchestrator,
-    OrchestrationTask,
-    OrchestrationConfig,
-    TaskClassification,
-    PriorityLevel,
-    ComplexityRating
-)
 from .engine import (
-    StrategicEngine,
+    StrategicContext,
     StrategicDecision,
     StrategicDecisionType,
-    StrategicContext
+    StrategicEngine,
+)
+from .orchestrator import (
+    ComplexityRating,
+    OrchestrationConfig,
+    OrchestrationTask,
+    Orchestrator,
+    PriorityLevel,
+    TaskClassification,
 )
 
 __all__ = [
-    "Orchestrator",
-    "OrchestrationTask",
-    "OrchestrationConfig", 
-    "TaskClassification",
-    "PriorityLevel",
     "ComplexityRating",
-    "StrategicEngine",
+    "OrchestrationConfig",
+    "OrchestrationTask",
+    "Orchestrator",
+    "PriorityLevel",
+    "StrategicContext",
     "StrategicDecision",
     "StrategicDecisionType",
-    "StrategicContext"
+    "StrategicEngine",
+    "TaskClassification",
 ]

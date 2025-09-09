@@ -5,19 +5,19 @@ Re-exports subscription management components.
 """
 
 from .manager import (
-    SubscriptionManager,
-    SubscriptionTier,
     SubscriptionFeature,
+    SubscriptionManager,
+    SubscriptionMatrix,
     SubscriptionPlan,
+    SubscriptionTier,
     UserSubscription,
-    SubscriptionMatrix
 )
 
 __all__ = [
-    "SubscriptionManager",
-    "SubscriptionTier",
     "SubscriptionFeature",
-    "SubscriptionPlan", 
+    "SubscriptionManager",
+    "SubscriptionMatrix",
+    "SubscriptionPlan",
+    "SubscriptionTier",
     "UserSubscription",
-    "SubscriptionMatrix"
 ]

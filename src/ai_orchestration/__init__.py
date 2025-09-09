@@ -6,7 +6,7 @@ intelligence potential inherent in users' premium subscription matrix.
 
 Strategic Task Specification:
 - Task Classification: AUTONOMOUS_STRATEGIC_IMPLEMENTATION
-- Priority Level: CRITICAL_INFRASTRUCTURE  
+- Priority Level: CRITICAL_INFRASTRUCTURE
 - Complexity Rating: ARCHITECTURAL_SYNTHESIS
 - Execution Mode: DISTRIBUTED_AUTONOMOUS_ORCHESTRATION
 """
@@ -15,44 +15,44 @@ __version__ = "1.0.0"
 __author__ = "AI Orchestration Team"
 __email__ = "team@ai-orchestration.com"
 
-from .core.orchestrator import (
-    Orchestrator,
-    OrchestrationTask,
-    OrchestrationConfig,
-    TaskClassification,
-    PriorityLevel,
-    ComplexityRating
+from .agents.coordinator import (
+    Agent,
+    AgentCapability,
+    AgentCoordinator,
+    AgentMetrics,
+    AgentStatus,
+    AgentType,
+    CoordinationStrategy,
 )
 from .core.engine import (
-    StrategicEngine,
+    StrategicContext,
     StrategicDecision,
     StrategicDecisionType,
-    StrategicContext
+    StrategicEngine,
 )
-from .subscription.manager import (
-    SubscriptionManager,
-    SubscriptionTier,
-    SubscriptionFeature,
-    SubscriptionPlan,
-    UserSubscription,
-    SubscriptionMatrix
-)
-from .agents.coordinator import (
-    AgentCoordinator,
-    Agent,
-    AgentType,
-    AgentStatus,
-    AgentCapability,
-    AgentMetrics,
-    CoordinationStrategy
+from .core.orchestrator import (
+    ComplexityRating,
+    OrchestrationConfig,
+    OrchestrationTask,
+    Orchestrator,
+    PriorityLevel,
+    TaskClassification,
 )
 from .intelligence.emergent import (
-    EmergentIntelligence,
-    LearningPattern,
-    IntelligenceMetrics,
     EmergentConfig,
+    EmergentIntelligence,
+    IntelligenceMetrics,
     LearningMode,
-    PatternType
+    LearningPattern,
+    PatternType,
+)
+from .subscription.manager import (
+    SubscriptionFeature,
+    SubscriptionManager,
+    SubscriptionMatrix,
+    SubscriptionPlan,
+    SubscriptionTier,
+    UserSubscription,
 )
 
 __all__ = [
@@ -63,13 +63,11 @@ __all__ = [
     "TaskClassification",
     "PriorityLevel",
     "ComplexityRating",
-    
     # Strategic engine
     "StrategicEngine",
     "StrategicDecision",
     "StrategicDecisionType",
     "StrategicContext",
-    
     # Subscription management
     "SubscriptionManager",
     "SubscriptionTier",
@@ -77,21 +75,19 @@ __all__ = [
     "SubscriptionPlan",
     "UserSubscription",
     "SubscriptionMatrix",
-    
     # Agent coordination
     "AgentCoordinator",
     "Agent",
-    "AgentType", 
+    "AgentType",
     "AgentStatus",
     "AgentCapability",
     "AgentMetrics",
     "CoordinationStrategy",
-    
     # Emergent intelligence
     "EmergentIntelligence",
     "LearningPattern",
     "IntelligenceMetrics",
     "EmergentConfig",
     "LearningMode",
-    "PatternType"
+    "PatternType",
 ]

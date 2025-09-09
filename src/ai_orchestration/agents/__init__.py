@@ -5,21 +5,21 @@ Re-exports agent coordination components.
 """
 
 from .coordinator import (
-    AgentCoordinator,
     Agent,
-    AgentType,
-    AgentStatus,
     AgentCapability,
+    AgentCoordinator,
     AgentMetrics,
-    CoordinationStrategy
+    AgentStatus,
+    AgentType,
+    CoordinationStrategy,
 )
 
 __all__ = [
-    "AgentCoordinator",
     "Agent",
-    "AgentType",
-    "AgentStatus",
-    "AgentCapability", 
+    "AgentCapability",
+    "AgentCoordinator",
     "AgentMetrics",
-    "CoordinationStrategy"
+    "AgentStatus",
+    "AgentType",
+    "CoordinationStrategy",
 ]

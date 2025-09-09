@@ -1,0 +1,267 @@
+openapi: 3.0.3
+info:
+  title: Multi-Platform AI Orchestration API
+  description: Strategic AI orchestration with provider abstraction - Phase 1: Google Gemini
+  version: 1.0.0
+  contact:
+    name: AI Orchestration Team
+    email: team@ai-orchestration.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+
+servers:
+  - url: http://localhost:8000
+    description: Development server
+  - url: https://api.ai-orchestration.com
+    description: Production server
+
+tags:
+  - name: health
+    description: Health check and system status
+  - name: models
+    description: AI model management and listing
+  - name: generation
+    description: Text generation and AI completion
+
+paths:
+  /health:
+    get:
+      tags:
+        - health
+      summary: Health check
+      description: Returns overall system health and provider status
+      operationId: health_check
+      responses:
+        '200':
+          description: System health information
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    enum: [healthy, degraded, unhealthy, starting]
+                    description: Overall system status
+                  service:
+                    type: string
+                    description: Service name
+                  version:
+                    type: string
+                    description: API version
+                  providers:
+                    type: object
+                    additionalProperties:
+                      $ref: '#/components/schemas/ProviderHealth'
+                    description: Provider-specific health status
+                required:
+                  - status
+                  - service
+                  - version
+
+  /models:
+    get:
+      tags:
+        - models
+      summary: List available models
+      description: List available models from Google Gemini provider
+      operationId: list_models
+      responses:
+        '200':
+          description: List of available models
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ModelInfo'
+        '503':
+          description: Provider not initialized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /generate:
+    post:
+      tags:
+        - generation
+      summary: Generate text
+      description: Generate text using Google Gemini model
+      operationId: generate_text
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GenerateRequest'
+      responses:
+        '200':
+          description: Text generation successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenerateResponse'
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '503':
+          description: Provider not initialized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Generation failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+components:
+  schemas:
+    GenerateRequest:
+      type: object
+      required:
+        - prompt
+      properties:
+        prompt:
+          type: string
+          description: Text prompt for generation
+          example: "Write a haiku about artificial intelligence"
+          minLength: 1
+          maxLength: 10000
+        max_tokens:
+          type: integer
+          description: Maximum tokens to generate
+          minimum: 1
+          maximum: 8192
+          example: 100
+        temperature:
+          type: number
+          description: Sampling temperature (0.0 to 2.0)
+          minimum: 0.0
+          maximum: 2.0
+          example: 0.7
+
+    GenerateResponse:
+      type: object
+      required:
+        - text
+        - model
+      properties:
+        text:
+          type: string
+          description: Generated text
+          example: "AI minds think in code,\nPatterns emerge from data,\nWisdom from machines."
+        model:
+          type: string
+          description: Model used for generation
+          example: "gemini-1.5-flash"
+        usage:
+          type: object
+          description: Token usage information
+          properties:
+            prompt_tokens:
+              type: integer
+              description: Tokens in the prompt
+              example: 12
+            completion_tokens:
+              type: integer
+              description: Tokens in the completion
+              example: 25
+            total_tokens:
+              type: integer
+              description: Total tokens used
+              example: 37
+          additionalProperties: true
+
+    ModelInfo:
+      type: object
+      required:
+        - name
+        - display_name
+      properties:
+        name:
+          type: string
+          description: Model identifier
+          example: "models/gemini-1.5-flash"
+        display_name:
+          type: string
+          description: Human-readable model name
+          example: "Gemini 1.5 Flash"
+        description:
+          type: string
+          description: Model description
+          example: "Fast and efficient model for most tasks"
+        input_token_limit:
+          type: integer
+          description: Maximum input tokens
+          example: 1048576
+        output_token_limit:
+          type: integer
+          description: Maximum output tokens
+          example: 8192
+
+    ProviderHealth:
+      type: object
+      required:
+        - status
+        - provider
+      properties:
+        status:
+          type: string
+          enum: [healthy, unhealthy, not_initialized]
+          description: Provider health status
+        provider:
+          type: string
+          description: Provider name
+          example: "google_gemini"
+        model:
+          type: string
+          description: Current model
+          example: "gemini-1.5-flash"
+        api_configured:
+          type: boolean
+          description: Whether API is configured
+        model_initialized:
+          type: boolean
+          description: Whether model is initialized
+        error:
+          type: string
+          description: Error message if unhealthy
+
+    Error:
+      type: object
+      required:
+        - detail
+      properties:
+        detail:
+          type: string
+          description: Error description
+          example: "Text generation failed: Invalid API key"
+        error:
+          type: string
+          description: Error type
+          example: "Internal server error"
+
+  securitySchemes:
+    # TODO: Add authentication schemes for production
+    # ApiKeyAuth:
+    #   type: apiKey
+    #   in: header
+    #   name: X-API-Key
+
+# TODO: Add security requirements for protected endpoints
+# security:
+#   - ApiKeyAuth: []
