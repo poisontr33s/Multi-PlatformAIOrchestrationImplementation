@@ -5,19 +5,19 @@ Re-exports emergent intelligence components.
 """
 
 from .emergent import (
-    EmergentIntelligence,
-    LearningPattern,
-    IntelligenceMetrics,
     EmergentConfig,
+    EmergentIntelligence,
+    IntelligenceMetrics,
     LearningMode,
-    PatternType
+    LearningPattern,
+    PatternType,
 )
 
 __all__ = [
-    "EmergentIntelligence",
-    "LearningPattern",
-    "IntelligenceMetrics",
     "EmergentConfig",
-    "LearningMode", 
-    "PatternType"
+    "EmergentIntelligence",
+    "IntelligenceMetrics",
+    "LearningMode",
+    "LearningPattern",
+    "PatternType",
 ]
