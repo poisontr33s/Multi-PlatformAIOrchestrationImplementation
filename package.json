@@ -5,14 +5,14 @@
   "type": "module",
   "scripts": {
     "dev": "bun run scripts/dev-server.ts",
-    "build": "bun build scripts/build.ts",
+    "build": "bun run scripts/build.ts",
     "test": "bun test",
     "lint": "bun run scripts/lint.ts",
     "setup": "bun install && bun run setup-checks",
     "setup-checks": "bun run scripts/setup-checks.ts",
-    "gemini": "bunx @google/generative-ai-cli",
-    "claude": "bunx @anthropic-ai/claude-cli",
-    "openai": "bunx openai-cli",
+    "gemini": "bun run scripts/gemini-cli.ts",
+    "claude": "bun run scripts/claude-cli.ts",
+    "openai": "bun run scripts/openai-cli.ts",
     "ai-orchestrator": "python -m ai_orchestration.cli"
   },
   "dependencies": {
