@@ -1,0 +1,60 @@
+{
+  "name": "multi-platform-ai-orchestration",
+  "version": "1.0.0",
+  "description": "Strategic Multi-Platform AI Orchestration Implementation with Distributed Autonomous Capabilities",
+  "type": "module",
+  "scripts": {
+    "dev": "bun run scripts/dev-server.ts",
+    "build": "bun run scripts/build.ts",
+    "test": "bun test",
+    "lint": "bun run scripts/lint.ts",
+    "setup": "bun install && bun run setup-checks",
+    "setup-checks": "bun run scripts/setup-checks.ts",
+    "gemini": "bun run scripts/gemini-cli.ts",
+    "claude": "bun run scripts/claude-cli.ts",
+    "openai": "bun run scripts/openai-cli.ts",
+    "ai-orchestrator": "python -m ai_orchestration.cli"
+  },
+  "dependencies": {
+    "@google/generative-ai": "^0.21.0",
+    "@anthropic-ai/sdk": "^0.30.0",
+    "openai": "^4.70.0",
+    "@huggingface/inference": "^2.8.1",
+    "fastify": "^5.1.0",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.1",
+    "typescript": "^5.7.2",
+    "bun-types": "^1.1.38",
+    "@types/bun": "^1.1.13"
+  },
+  "peerDependencies": {
+    "bun": ">=1.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "bun": ">=1.0.0"
+  },
+  "keywords": [
+    "ai",
+    "orchestration",
+    "distributed",
+    "autonomous",
+    "strategic",
+    "gemini",
+    "claude",
+    "openai",
+    "huggingface"
+  ],
+  "author": "AI Orchestration Team",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/poisontr33s/Multi-PlatformAIOrchestrationImplementation.git"
+  },
+  "homepage": "https://github.com/poisontr33s/Multi-PlatformAIOrchestrationImplementation",
+  "bugs": {
+    "url": "https://github.com/poisontr33s/Multi-PlatformAIOrchestrationImplementation/issues"
+  }
+}

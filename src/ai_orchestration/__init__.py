@@ -54,6 +54,20 @@ from .intelligence.emergent import (
     LearningMode,
     PatternType
 )
+from .providers import (
+    AIProvider,
+    AIModel,
+    ChatMessage,
+    GenerationRequest,
+    GenerationResponse,
+    GoogleGenAIProvider,
+    AnthropicProvider,
+    OpenAIProvider,
+    HuggingFaceProvider,
+    ProviderManager,
+    MessageRole,
+    ModelType
+)
 
 __all__ = [
     # Core orchestration
@@ -93,5 +107,19 @@ __all__ = [
     "IntelligenceMetrics",
     "EmergentConfig",
     "LearningMode",
-    "PatternType"
+    "PatternType",
+    
+    # AI Providers
+    "AIProvider",
+    "AIModel",
+    "ChatMessage", 
+    "GenerationRequest",
+    "GenerationResponse",
+    "GoogleGenAIProvider",
+    "AnthropicProvider",
+    "OpenAIProvider",
+    "HuggingFaceProvider",
+    "ProviderManager",
+    "MessageRole",
+    "ModelType"
 ]
