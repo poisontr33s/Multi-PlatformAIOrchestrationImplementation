@@ -52,16 +52,16 @@ def test_generate_response_model():
 
     response = GenerateResponse(
         text="Generated text",
-        model="gemini-1.5-flash",
+        model="gemini-2.0-flash-exp",  # Updated to 2025 default
     )
     assert response.text == "Generated text"
-    assert response.model == "gemini-1.5-flash"
+    assert response.model == "gemini-2.0-flash-exp"
     assert response.usage == {}
 
     # Test with usage info
     response_with_usage = GenerateResponse(
         text="Generated text",
-        model="gemini-1.5-flash",
+        model="gemini-2.0-flash-exp",  # Updated to 2025 default
         usage={"total_tokens": 25},
     )
     assert response_with_usage.usage["total_tokens"] == 25
@@ -72,11 +72,11 @@ def test_model_info_structure():
     from ai_orchestration.providers.google_gemini import ModelInfo
 
     model = ModelInfo(
-        name="models/gemini-1.5-flash",
-        display_name="Gemini 1.5 Flash",
+        name="models/gemini-2.0-flash-exp",  # Updated to 2025 model
+        display_name="Gemini 2.0 Flash Experimental",
     )
-    assert model.name == "models/gemini-1.5-flash"
-    assert model.display_name == "Gemini 1.5 Flash"
+    assert model.name == "models/gemini-2.0-flash-exp"
+    assert model.display_name == "Gemini 2.0 Flash Experimental"
     assert model.description == ""
     assert model.input_token_limit is None
     assert model.output_token_limit is None
@@ -94,7 +94,7 @@ def test_provider_initialization_without_api_call(mock_configure):
     # Test initialization with mocked API key
     provider = GoogleGeminiProvider()
     assert provider.api_key == "test_key"
-    assert provider.model_name == "gemini-1.5-flash"  # Default fallback
+    assert provider.model_name == "gemini-2.0-flash-exp"  # Updated 2025 default
 
     # Verify configure was called
     mock_configure.assert_called_once_with(api_key="test_key")
@@ -164,3 +164,38 @@ def test_provider_api_structure():
     generate_sig = inspect.signature(GoogleGeminiProvider.generate_text)
     assert "self" in generate_sig.parameters
     assert "request" in generate_sig.parameters
+
+
+def test_provider_2025_model_registry():
+    """Test that provider has 2025 model registry with proper models."""
+    from ai_orchestration.providers.google_gemini import GoogleGeminiProvider
+    
+    # Check that 2025 models are in the registry
+    assert "gemini-2.0-flash-exp" in GoogleGeminiProvider.SUPPORTED_MODELS
+    assert "gemini-2.0-flash-thinking-exp" in GoogleGeminiProvider.SUPPORTED_MODELS
+    
+    # Check model capabilities
+    flash_exp = GoogleGeminiProvider.SUPPORTED_MODELS["gemini-2.0-flash-exp"]
+    assert flash_exp["context_window"] >= 1000000  # 1M+ tokens
+    assert flash_exp["recommended"] is True
+    assert "multimodal" in flash_exp["features"]
+
+
+@patch.dict("os.environ", {"GOOGLE_API_KEY": "test_key"})
+@patch("google.generativeai.configure")  
+def test_provider_model_helper_methods(mock_configure):
+    """Test helper methods for model information."""
+    from ai_orchestration.providers.google_gemini import GoogleGeminiProvider
+    
+    mock_configure.return_value = None
+    
+    # Test with 2025 recommended model
+    provider = GoogleGeminiProvider(model_name="gemini-2.0-flash-exp")
+    assert provider.get_model_context_window() >= 1000000
+    assert provider.is_model_recommended() is True
+    assert "multimodal" in provider.get_model_features()
+    
+    # Test with legacy model
+    provider_legacy = GoogleGeminiProvider(model_name="gemini-1.5-flash")  
+    assert provider_legacy.is_model_recommended() is False
+    assert "legacy" in provider_legacy.get_model_features()

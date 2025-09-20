@@ -1,6 +1,6 @@
 """
-FastAPI server for Multi-Platform AI Orchestration
-Minimal API surface for Phase 1: Google Gemini only
+FastAPI server for Multi-Platform AI Orchestration (2025 Standards)
+Minimal API surface for Phase 1: Google Gemini 2.0+ with enhanced capabilities
 """
 
 from typing import Any, Dict, List
@@ -20,9 +20,9 @@ logger = structlog.get_logger(__name__)
 
 # FastAPI app instance
 app = FastAPI(
-    title="Multi-Platform AI Orchestration API",
-    description="Strategic AI orchestration with provider abstraction - Phase 1: Google Gemini",
-    version="1.0.0",
+    title="Multi-Platform AI Orchestration API (2025)",
+    description="Strategic AI orchestration with provider abstraction - Phase 1: Google Gemini 2.0+ with 1M+ token context windows",
+    version="1.1.0",  # Updated for 2025 features
     docs_url="/docs",
     redoc_url="/redoc",
 )

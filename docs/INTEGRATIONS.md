@@ -1,22 +1,22 @@
-# Google Gemini Integration Guide
+# Google Gemini Integration Guide (2025 Standards)
 
-This guide covers the Google Gemini integration for the Multi-Platform AI Orchestration Implementation - Phase 1.
+This guide covers the Google Gemini integration for the Multi-Platform AI Orchestration Implementation - Phase 1, updated for September 2025 with the latest Gemini 2.0+ models and enhanced capabilities.
 
-## Setup
+## Setup (2025 Enhanced)
 
 ### 1. Environment Setup
 
-Use the provided setup scripts for quick initialization:
+Use the provided setup scripts for quick initialization with modern tooling:
 
 ```bash
-# Set up development environment with uv
+# Set up development environment with uv (2025 optimized)
 ./scripts/dev-setup.sh
 
 # Set up Jules agent environment (includes linting and testing)
 ./scripts/jules-setup.sh
 ```
 
-### 2. API Key Configuration
+### 2. API Key Configuration (2025 Models)
 
 Get your Google AI Studio API key from [Google AI Studio](https://makersuite.google.com/app/apikey).
 
@@ -24,15 +24,21 @@ Get your Google AI Studio API key from [Google AI Studio](https://makersuite.goo
 # Copy environment template
 cp .env.example .env
 
-# Edit .env and set your API key
+# Edit .env and set your API key with 2025 recommended model
 GOOGLE_API_KEY=your_google_api_key_here
-GOOGLE_GENAI_MODEL=gemini-1.5-flash
+GOOGLE_GENAI_MODEL=gemini-2.0-flash-exp  # 2025 recommended default
 ```
+
+**2025 Model Recommendations:**
+- **`gemini-2.0-flash-exp`**: Fastest with experimental features, 1M+ token context
+- **`gemini-2.0-flash-thinking-exp`**: Advanced reasoning capabilities  
+- **`gemini-2.0-flash`**: Stable production model with 1M+ tokens
+- **`gemini-2.5-flash-preview`**: Latest preview features (experimental)
 
 ### 3. Install Dependencies
 
 ```bash
-# Install with uv (recommended)
+# Install with uv (recommended for 2025)
 uv sync --extra dev
 
 # Or with pip

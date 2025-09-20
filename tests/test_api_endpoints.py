@@ -23,7 +23,7 @@ def test_app_imports():
     from ai_orchestration.api.server import app
 
     assert app is not None
-    assert app.title == "Multi-Platform AI Orchestration API"
+    assert app.title == "Multi-Platform AI Orchestration API (2025)"  # Updated for 2025
 
 
 def test_health_endpoint_structure(test_client):
@@ -133,7 +133,7 @@ def test_api_documentation_endpoints(test_client):
     openapi_spec = response.json()
     assert "openapi" in openapi_spec
     assert "info" in openapi_spec
-    assert openapi_spec["info"]["title"] == "Multi-Platform AI Orchestration API"
+    assert openapi_spec["info"]["title"] == "Multi-Platform AI Orchestration API (2025)"  # Updated for 2025
 
     # Test Swagger UI
     response = test_client.get("/docs")
@@ -205,8 +205,8 @@ def test_server_configuration():
     from ai_orchestration.api.server import app
 
     # Check FastAPI app configuration
-    assert app.title == "Multi-Platform AI Orchestration API"
-    assert app.version == "1.0.0"
+    assert app.title == "Multi-Platform AI Orchestration API (2025)"  # Updated for 2025
+    assert app.version == "1.1.0"  # Updated version for 2025
     assert "Strategic AI orchestration" in app.description
 
     # Check that docs are enabled
