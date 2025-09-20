@@ -59,20 +59,39 @@ class GoogleGeminiProvider:
     - Full backwards compatibility with Gemini 1.5 series
     """
 
-    # 2025 Model Registry with current capabilities
+    # 2025 Model Registry with current capabilities (September 2025)
     SUPPORTED_MODELS = {
-        # Gemini 2.0 Series (Recommended for 2025)
+        # Gemini 2.5 Series (Latest 2025 models)
+        "gemini-2.5-pro-preview-05-06": {
+            "display_name": "Gemini 2.5 Pro Preview", 
+            "context_window": 1050000,
+            "recommended": True,
+            "features": ["text", "multimodal", "high-quality", "reasoning", "2025-latest"]
+        },
+        "gemini-2.5-flash-preview-05-20": {
+            "display_name": "Gemini 2.5 Flash Preview",
+            "context_window": 1048576,
+            "recommended": True,
+            "features": ["text", "multimodal", "fast", "2025-latest"]
+        },
+        "gemini-2.5-flash-preview-04-17": {
+            "display_name": "Gemini 2.5 Flash Preview (04-17)",
+            "context_window": 1048576,
+            "recommended": True,
+            "features": ["text", "multimodal", "fast", "thinking", "2025-latest"]
+        },
+        # Gemini 2.0 Series (Stable 2025)
         "gemini-2.0-flash-exp": {
             "display_name": "Gemini 2.0 Flash Experimental", 
             "context_window": 1048576,
             "recommended": True,
-            "features": ["text", "multimodal", "fast"]
+            "features": ["text", "multimodal", "fast", "experimental"]
         },
         "gemini-2.0-flash-thinking-exp": {
             "display_name": "Gemini 2.0 Flash Thinking Experimental",
             "context_window": 1048576, 
             "recommended": True,
-            "features": ["text", "reasoning", "thinking"]
+            "features": ["text", "reasoning", "thinking", "experimental"]
         },
         "gemini-2.0-flash": {
             "display_name": "Gemini 2.0 Flash",
@@ -80,20 +99,13 @@ class GoogleGeminiProvider:
             "recommended": True,
             "features": ["text", "multimodal", "stable"]
         },
-        # Gemini 2.5 Series (Preview)
-        "gemini-2.5-flash-preview": {
-            "display_name": "Gemini 2.5 Flash Preview",
+        "gemini-2.0-flash-001": {
+            "display_name": "Gemini 2.0 Flash (001)",
             "context_window": 1048576,
-            "recommended": False,
-            "features": ["text", "multimodal", "preview"]
+            "recommended": True,
+            "features": ["text", "multimodal", "stable"]
         },
-        "gemini-2.5-pro-preview": {
-            "display_name": "Gemini 2.5 Pro Preview", 
-            "context_window": 1048576,
-            "recommended": False,
-            "features": ["text", "multimodal", "preview", "high-quality"]
-        },
-        # Gemini 1.5 Series (Backwards compatibility)
+        # Gemini 1.5 Series (Legacy support)
         "gemini-1.5-flash": {
             "display_name": "Gemini 1.5 Flash",
             "context_window": 1000000,
@@ -105,6 +117,12 @@ class GoogleGeminiProvider:
             "context_window": 2000000,
             "recommended": False, 
             "features": ["text", "multimodal", "legacy", "high-quality"]
+        },
+        "gemini-1.5-flash-002": {
+            "display_name": "Gemini 1.5 Flash (002)",
+            "context_window": 1000000,
+            "recommended": False,
+            "features": ["text", "multimodal", "legacy"]
         },
     }
 
@@ -128,10 +146,10 @@ class GoogleGeminiProvider:
 
         # Set model with environment-driven configuration
         # TODO: Set GOOGLE_GENAI_MODEL explicitly in production
-        # Updated for 2025: Gemini 2.0 Flash Experimental is now the recommended default
+        # Updated for September 2025: Gemini 2.5 Pro Preview is now the recommended default
         self.model_name = model_name or os.getenv(
             "GOOGLE_GENAI_MODEL",
-            "gemini-2.0-flash-exp",  # 2025 default: 1M+ token context, superior reasoning
+            "gemini-2.5-pro-preview-05-06",  # 2025 September latest: 1M+ tokens, superior quality
         )
 
         # Validate model against registry

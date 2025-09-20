@@ -26,14 +26,16 @@ cp .env.example .env
 
 # Edit .env and set your API key with 2025 recommended model
 GOOGLE_API_KEY=your_google_api_key_here
-GOOGLE_GENAI_MODEL=gemini-2.0-flash-exp  # 2025 recommended default
+GOOGLE_GENAI_MODEL=gemini-2.5-pro-preview-05-06  # September 2025 recommended default
 ```
 
 **2025 Model Recommendations:**
-- **`gemini-2.0-flash-exp`**: Fastest with experimental features, 1M+ token context
+- **`gemini-2.5-pro-preview-05-06`**: Highest quality, 1M+ token context (September 2025 default)
+- **`gemini-2.5-flash-preview-05-20`**: Fastest, 1M+ tokens, latest features
+- **`gemini-2.5-flash-preview-04-17`**: Thinking capabilities, 1M+ tokens
+- **`gemini-2.0-flash-exp`**: Experimental features with 1M+ tokens
 - **`gemini-2.0-flash-thinking-exp`**: Advanced reasoning capabilities  
 - **`gemini-2.0-flash`**: Stable production model with 1M+ tokens
-- **`gemini-2.5-flash-preview`**: Latest preview features (experimental)
 
 ### 3. Install Dependencies
 
